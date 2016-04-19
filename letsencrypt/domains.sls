@@ -53,9 +53,9 @@ letsencrypt-crontab-{{ setname }}-{{ domainlist[0] }}:
   cron.present:
     - name: /usr/local/bin/renew_letsencrypt_cert.sh {{ domainlist|join(' ') }}
     - month: '*'
-    - minute: random
-    - hour: random
-    - dayweek: '*'
+    - minute: '{{ letsencrypt.cron.minute }}'
+    - hour: '{{ letsencrypt.cron.hour }}'
+    - dayweek: '{{  letsencrypt.cron.dayweek }}'
     - identifier: letsencrypt-{{ setname }}-{{ domainlist[0] }}
     - require:
       - cmd: create-initial-cert-{{ setname }}-{{ domainlist | join('+') }}

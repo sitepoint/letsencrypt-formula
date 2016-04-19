@@ -16,4 +16,7 @@ letsencrypt:
       - mail.example.com
     intranet:
       - intranet.example.com
-
+  cron:
+    minute: 10
+    hour: 2
+    dayweek: 1
