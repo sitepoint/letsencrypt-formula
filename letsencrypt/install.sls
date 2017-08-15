@@ -8,3 +8,4 @@ letsencrypt-client-git:
     - name: https://github.com/letsencrypt/letsencrypt
     - target: {{ letsencrypt.cli_install_dir }}
     - force_reset: True
+    - force_fetch: True
