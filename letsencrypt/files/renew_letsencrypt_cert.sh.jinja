@@ -10,9 +10,12 @@ done
 
 if ! /usr/local/bin/check_letsencrypt_cert.sh "$@" > /dev/null
 then
-    {{ letsencrypt.cli_install_dir }}/letsencrypt-auto certonly $JOINED --non-interactive || exit 1
+    {{ letsencrypt.cli_install_dir }}/letsencrypt-auto certonly $JOINED \
+        --no-self-upgrade --non-interactive || exit 1
     cat /etc/letsencrypt/live/${COMMON_NAME}/fullchain.pem \
         /etc/letsencrypt/live/${COMMON_NAME}/privkey.pem \
-        > /etc/letsencrypt/live/${COMMON_NAME}/fullchain-privkey.pem || exit 1
-    chmod 600 /etc/letsencrypt/live/${COMMON_NAME}/fullchain-privkey.pem || exit 1
+        > /etc/letsencrypt/live/${COMMON_NAME}/fullchain-privkey.pem ||
+        exit 1
+    chmod 600 /etc/letsencrypt/live/${COMMON_NAME}/fullchain-privkey.pem ||
+        exit 1
 fi
