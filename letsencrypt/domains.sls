@@ -32,7 +32,7 @@
 
 {%
   for setname, domainlist in salt['pillar.get'](
-    'letsencrypt:domainsets'
+    'letsencrypt:domainsets', {}
   ).items()
 %}
 
