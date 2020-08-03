@@ -61,15 +61,4 @@ letsencrypt-crontab-{{ setname }}-{{ domainlist[0] }}:
       - cmd: create-initial-cert-{{ setname }}-{{ domainlist | join('+') }}
       - file: /usr/local/bin/renew_letsencrypt_cert.sh
 
-create-fullchain-privkey-pem-for-{{ domainlist[0] }}:
-  cmd.run:
-    - name: |
-        cat /etc/letsencrypt/live/{{ domainlist[0] }}/fullchain.pem \
-            /etc/letsencrypt/live/{{ domainlist[0] }}/privkey.pem \
-            > /etc/letsencrypt/live/{{ domainlist[0] }}/fullchain-privkey.pem && \
-        chmod 600 /etc/letsencrypt/live/{{ domainlist[0] }}/fullchain-privkey.pem
-    - creates: /etc/letsencrypt/live/{{ domainlist[0] }}/fullchain-privkey.pem
-    - require:
-      - cmd: create-initial-cert-{{ setname }}-{{ domainlist | join('+') }}
-
 {% endfor %}
