@@ -32,8 +32,8 @@
 
 {%
   for setname, domainlist in salt['pillar.get'](
-    'letsencrypt:domainsets'
-  ).iteritems()
+    'letsencrypt:domainsets', {}
+  ).items()
 %}
 
 create-initial-cert-{{ setname }}-{{ domainlist | join('+') }}:
