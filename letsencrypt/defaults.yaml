@@ -2,3 +2,7 @@
 # vim: ft=yaml
 letsencrypt:
   cli_install_dir: /opt/letsencrypt
+  cron:
+    minute: random
+    hour: random
+    dayweek: '*'
